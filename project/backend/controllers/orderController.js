@@ -1,19 +1,17 @@
-exports.list = (req, res) => {
-  // TODO: 获取订单列表
-  res.send('order list');
-};
+const db = require('../models');
+const Order = db.Order;
+const BlindBox = db.BlindBox;
 
-exports.detail = (req, res) => {
-  // TODO: 获取订单详情
-  res.send('order detail');
+// 获取用户的抽奖记录
+exports.getDrawHistory = async (req, res) => {
+  try {
+    const history = await db.DrawRecord.findAll({
+      where: { userId: req.user.id },
+      include: [{ model: BlindBox, attributes: ['name'] }],
+      order: [['createdAt', 'DESC']]
+    });
+    res.json(history);
+  } catch (error) {
+    res.status(500).json({ message: '获取抽奖记录失败', error: error.message });
+  }
 };
-
-exports.create = (req, res) => {
-  // TODO: 创建订单
-  res.send('order create');
-};
-
-exports.update = (req, res) => {
-  // TODO: 更新订单
-  res.send('order update');
-}; 

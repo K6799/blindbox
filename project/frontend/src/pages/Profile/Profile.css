@@ -1,0 +1,37 @@
+.profile-container {
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+.profile-card {
+    background-color: #2c2c2c;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+    text-align: left;
+    border: 1px solid #333;
+}
+
+.profile-card p {
+    font-size: 1.1rem;
+    margin: 1rem 0;
+    border-bottom: 1px solid #444;
+    padding-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-card p:last-child {
+    border-bottom: none;
+}
+
+.profile-card strong {
+    color: #aaa;
+}
+
+.profile-card .balance {
+    color: #646cff;
+    font-weight: bold;
+}
+

@@ -1,19 +1,26 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config');
-
-const BlindBox = sequelize.define('BlindBox', {
-  id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
-  name: { type: DataTypes.STRING(100), allowNull: false },
-  description: { type: DataTypes.TEXT },
-  price: { type: DataTypes.DECIMAL(10,2), allowNull: false },
-  image: { type: DataTypes.STRING(255) },
-  stock: { type: DataTypes.INTEGER, defaultValue: 0 },
-  status: { type: DataTypes.TINYINT, defaultValue: 1 },
-  created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
-  updated_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
-}, {
-  tableName: 'blindboxes',
-  timestamps: false,
-});
-
-module.exports = BlindBox; 
+module.exports = (sequelize, DataTypes) => {
+  const BlindBox = sequelize.define('BlindBox', {
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
+    price: {
+      type: DataTypes.DECIMAL(10, 2),
+      allowNull: false
+    },
+    imageUrl: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    // items现在包含权重
+    items: {
+      type: DataTypes.JSON,
+      allowNull: false, // e.g., [{name: 'item1', rarity: 'N', image: 'url', weight: 50}, ...]
+    }
+  });
+  return BlindBox;
+};

@@ -1,17 +1,36 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config');
-
-const User = sequelize.define('User', {
-  id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
-  username: { type: DataTypes.STRING(50), allowNull: false, unique: true },
-  password_hash: { type: DataTypes.STRING(255), allowNull: false },
-  email: { type: DataTypes.STRING(100), unique: true },
-  avatar: { type: DataTypes.STRING(255) },
-  created_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
-  updated_at: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
-}, {
-  tableName: 'users',
-  timestamps: false,
-});
-
-module.exports = User; 
+module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define('User', {
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: {
+        msg: '用户名已存在'
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: {
+        msg: '邮箱已被注册'
+      },
+      validate: {
+        isEmail: {
+          msg: '请输入有效的邮箱地址'
+        }
+      }
+    },
+    balance: {
+      type: DataTypes.DECIMAL(10, 2),
+      defaultValue: 99999.00 // 初始给一些余额用于测试
+    },
+    role: {
+      type: DataTypes.STRING,
+      defaultValue: 'user' // 'user' or 'admin'
+    }
+  });
+  return User;
+};

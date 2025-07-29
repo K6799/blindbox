@@ -1,41 +1,45 @@
-const sequelize = require('../config');
-const User = require('./user');
-const BlindBox = require('./blindbox');
-const Order = require('./order');
-const DrawRecord = require('./draw_record');
-const Showcase = require('./showcase');
+const { Sequelize } = require('sequelize');
+const config = require('../config').database;
 
-// 关联关系
-User.hasMany(Order, { foreignKey: 'user_id' });
-Order.belongsTo(User, { foreignKey: 'user_id' });
+// 使用 SQLite 的配置来初始化 Sequelize
+const sequelize = new Sequelize({
+  dialect: config.dialect,
+  storage: config.storage,
+  logging: false // 关闭日志以保持控制台清洁
+});
 
-User.hasMany(DrawRecord, { foreignKey: 'user_id' });
-DrawRecord.belongsTo(User, { foreignKey: 'user_id' });
+const db = {};
 
-User.hasMany(Showcase, { foreignKey: 'user_id' });
-Showcase.belongsTo(User, { foreignKey: 'user_id' });
+db.Sequelize = Sequelize;
+db.sequelize = sequelize;
 
-BlindBox.hasMany(Order, { foreignKey: 'blindbox_id' });
-Order.belongsTo(BlindBox, { foreignKey: 'blindbox_id' });
+// 引入模型 (这部分保持不变)
+db.User = require('./user')(sequelize, Sequelize);
+db.BlindBox = require('./blindbox')(sequelize, Sequelize);
+db.Order = require('./order')(sequelize, Sequelize);
+db.DrawRecord = require('./draw_record')(sequelize, Sequelize);
+db.Showcase = require('./showcase')(sequelize, Sequelize);
 
-BlindBox.hasMany(DrawRecord, { foreignKey: 'blindbox_id' });
-DrawRecord.belongsTo(BlindBox, { foreignKey: 'blindbox_id' });
+// 定义模型之间的关联关系 (这部分保持不变)
+// 用户与订单 (一对多)
+db.User.hasMany(db.Order, { foreignKey: 'userId', onDelete: 'CASCADE' });
+db.Order.belongsTo(db.User, { foreignKey: 'userId' });
 
-BlindBox.hasMany(Showcase, { foreignKey: 'blindbox_id' });
-Showcase.belongsTo(BlindBox, { foreignKey: 'blindbox_id' });
+// 用户与抽盒记录 (一对多)
+db.User.hasMany(db.DrawRecord, { foreignKey: 'userId', onDelete: 'CASCADE' });
+db.DrawRecord.belongsTo(db.User, { foreignKey: 'userId' });
 
-// 一键同步建表
-async function syncModels() {
-  await sequelize.sync({ alter: true });
-  console.log('All models were synchronized successfully.');
-}
+// 用户与玩家秀 (一对多)
+db.User.hasMany(db.Showcase, { foreignKey: 'userId', onDelete: 'CASCADE' });
+db.Showcase.belongsTo(db.User, { foreignKey: 'userId' });
 
-module.exports = {
-  sequelize,
-  User,
-  BlindBox,
-  Order,
-  DrawRecord,
-  Showcase,
-  syncModels,
-}; 
+// 盲盒与抽盒记录 (一对多)
+db.BlindBox.hasMany(db.DrawRecord, { foreignKey: 'blindBoxId' });
+db.DrawRecord.belongsTo(db.BlindBox, { foreignKey: 'blindBoxId' });
+
+// 订单与盲盒
+db.Order.belongsTo(db.BlindBox, { foreignKey: 'blindBoxId' });
+db.BlindBox.hasMany(db.Order, { foreignKey: 'blindBoxId' });
+
+
+module.exports = db;

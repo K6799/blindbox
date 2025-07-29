@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const orderController = require('../controllers/orderController');
+const { auth } = require('../middleware/auth');
 
-router.get('/', orderController.list);
-router.get('/:id', orderController.detail);
-router.post('/', orderController.create);
-router.put('/:id', orderController.update);
+// 注意：原有的getUserOrders已合并到getDrawHistory中，因为逻辑更贴近
+router.get('/history', auth, orderController.getDrawHistory);
 
-module.exports = router; 
+module.exports = router;
