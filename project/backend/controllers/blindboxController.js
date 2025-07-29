@@ -72,25 +72,29 @@ exports.drawBlindBox = async (req, res) => {
       return res.status(404).json({ message: '盲盒未找到' });
     }
 
-    if (parseFloat(user.balance) < parseFloat(blindBox.price)) {
+    const userBalance = parseFloat(user.balance);
+    const boxPrice = parseFloat(blindBox.price);
+
+    if (isNaN(userBalance) || userBalance < boxPrice) {
       await t.rollback();
-      return res.status(400).json({ message: '余额不足' });
+      return res.status(400).json({ message: '余额不足或账户余额异常' });
     }
 
     // 扣除余额
-    user.balance = parseFloat(user.balance) - parseFloat(blindBox.price);
+    user.balance = userBalance - boxPrice;
     await user.save({ transaction: t });
 
     // 创建订单
     await Order.create({
       userId,
       blindBoxId,
-      totalPrice: blindBox.price,
+      totalPrice: boxPrice,
     }, { transaction: t });
 
-    // 权重抽奖逻辑
-    const items = blindBox.items;
+    // 【修复】将从数据库读取的 items 字符串解析为 JSON 数组
+    const items = JSON.parse(blindBox.items);
     const drawnItem = weightedDraw(items);
+
     if (!drawnItem) {
       throw new Error('抽奖逻辑出错，未抽中任何物品');
     }
@@ -123,7 +127,6 @@ exports.drawBlindBox = async (req, res) => {
 exports.createBlindBox = async (req, res) => {
   try {
     const { name, description, price, imageUrl, items } = req.body;
-    // 简单验证
     if (!name || !price || !items || !Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ message: '名称、价格和物品列表为必填项' });
     }

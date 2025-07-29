@@ -10,12 +10,20 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    const processUserData = (userData) => {
+        // 【修复】确保从API获取的用户数据中，balance字段永远是一个数字
+        if (userData && typeof userData.balance !== 'number') {
+            userData.balance = Number(userData.balance) || 0;
+        }
+        return userData;
+    };
+
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
             getProfile()
                 .then(res => {
-                    setUser(res.data);
+                    setUser(processUserData(res.data));
                 })
                 .catch(() => {
                     localStorage.removeItem('token');
@@ -31,7 +39,7 @@ export const AuthProvider = ({ children }) => {
 
     const login = (userData, token) => {
         localStorage.setItem('token', token);
-        setUser(userData);
+        setUser(processUserData(userData));
         toast.success(`欢迎回来, ${userData.username}!`);
     };
 
@@ -43,7 +51,7 @@ export const AuthProvider = ({ children }) => {
 
     const updateUserBalance = (newBalance) => {
         if (user) {
-            setUser({ ...user, balance: newBalance });
+            setUser({ ...user, balance: Number(newBalance) || 0 });
         }
     };
 
@@ -62,4 +70,3 @@ export const AuthProvider = ({ children }) => {
         </AuthContext.Provider>
     );
 };
-
