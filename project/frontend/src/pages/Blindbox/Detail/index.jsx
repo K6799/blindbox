@@ -18,7 +18,6 @@ const BlindBoxDetail = () => {
     const getDetail = async () => {
       try {
         const { data } = await fetchBlindBoxDetail(id);
-        // 解析items JSON字符串
         if (typeof data.items === 'string') {
           data.items = JSON.parse(data.items);
         }
@@ -64,7 +63,6 @@ const BlindBoxDetail = () => {
     });
 
     drawPromise.finally(() => {
-      // 动画效果结束后再设置 isDrawing 为 false
       setTimeout(() => setIsDrawing(false), 4000);
     });
   };
@@ -119,7 +117,8 @@ const BlindBoxDetail = () => {
                 <h3>{drawResult.name}</h3>
                 <p>稀有度: <span className={`rarity-tag rarity-${drawResult.rarity}`}>{drawResult.rarity}</span></p>
                 <div className="result-buttons">
-                  <button onClick={() => setDrawResult(null)} className="close-button">再抽一次</button>
+                  {/* 【修复】将按钮文字从“再抽一次”改为“退出”，并修改点击事件为关闭弹窗 */}
+                  <button onClick={() => setDrawResult(null)} className="close-button">退出</button>
                   <button onClick={() => { setDrawResult(null); navigate('/showcase', { state: { newItem: drawResult } }); }} className="showcase-button">去玩家秀分享</button>
                 </div>
               </div>
@@ -130,4 +129,3 @@ const BlindBoxDetail = () => {
 };
 
 export default BlindBoxDetail;
-

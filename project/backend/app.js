@@ -41,61 +41,71 @@ async function initialData() {
         name: '太空奇遇系列',
         description: '探索宇宙的奥秘，与可爱的宇航员一起冒险。',
         price: 59.00,
-        imageUrl: 'https://placehold.co/400x400/7B68EE/FFFFFF?text=太空系列',
+        imageUrl: 'http://localhost:5173/images/C5488114A6444C11FFADA9F3358B384C.jpg',
         items: JSON.stringify([
-          { name: '火箭船长', rarity: 'N', image: 'https://placehold.co/200x200/cccccc/000000?text=火箭船长', weight: 45 },
-          { name: '星星探险家', rarity: 'N', image: 'https://placehold.co/200x200/ADD8E6/000000?text=星星探险家', weight: 45 },
-          { name: '月球漫步者', rarity: 'R', image: 'https://placehold.co/200x200/F0E68C/000000?text=月球漫步者', weight: 8 },
-          { name: '银河守护者', rarity: 'SR', image: 'https://placehold.co/200x200/98FB98/000000?text=银河守护者', weight: 2 }
+          { name: '火箭船长', rarity: 'N', image: 'http://localhost:5173/images/55C2957E9BAE8A604BEBCA4E4E062CF6.jpg', weight: 45 },
+          { name: '星星探险家', rarity: 'N', image: 'http://localhost:5173/images/D8BA6EE3DB7D2E1002F2A0D27DB16BE1.jpg', weight: 45 },
+          { name: '月球漫步者', rarity: 'R', image: 'http://localhost:5173/images/EA976E78C8EDD5B771DE8849D999A470.jpg', weight: 8 },
+          { name: '银河守护者', rarity: 'SR', image: 'http://localhost:5173/images/76396AFC0B49ACF0C1C6A1F9C4FB1ADE.jpg', weight: 2 }
         ])
       },
       {
-        name: '梦幻甜品系列',
-        description: '沉浸在甜蜜的世界里，每一款都是味蕾的盛宴。',
+        name: '海洋奇缘系列',
+        description: '海洋中的奥秘探索。',
         price: 49.00,
-        imageUrl: 'https://placehold.co/400x400/FFB6C1/FFFFFF?text=甜品系列',
+        imageUrl: 'http://localhost:5173/images/BFD011C3BE4CACE417C0D33BFF8BF88A.jpg',
         items: JSON.stringify([
-          { name: '草莓蛋糕', rarity: 'N', image: 'https://placehold.co/200x200/FF69B4/000000?text=草莓蛋糕', weight: 40 },
-          { name: '巧克力泡芙', rarity: 'N', image: 'https://placehold.co/200x200/D2691E/FFFFFF?text=巧克力泡芙', weight: 40 },
-          { name: '抹茶冰淇淋', rarity: 'R', image: 'https://placehold.co/200x200/3CB371/FFFFFF?text=抹茶冰淇淋', weight: 15 },
-          { name: '彩虹马卡龙（隐藏款）', rarity: 'SSR', image: 'https://placehold.co/200x200/EE82EE/000000?text=彩虹马卡龙', weight: 5 }
+          { name: '珊瑚守护者', rarity: 'N', image: 'http://localhost:5173/images/4B275E350363C8488BAFEA4F36A6D89E.jpg', weight: 40 },
+          { name: '潮汐歌者', rarity: 'R', image: 'http://localhost:5173/images/531BC8CAA75C170945BECF1245A4D9E6.jpg', weight: 40 },
+          { name: '探海寻宝者', rarity: 'SSR', image: 'http://localhost:5173/images/64C1A93B1FBE6E77EA2DF1166D9CC355.jpg', weight: 15 }
         ])
       },
       {
         name: '神秘森林系列',
         description: '与森林中的小精灵们一起玩耍。',
         price: 69.00,
-        imageUrl: 'https://placehold.co/400x400/228B22/FFFFFF?text=森林系列',
+        imageUrl: 'http://localhost:5173/images/633C63990B305085122BCB1B56310BF7.jpg',
         items: JSON.stringify([
-          { name: '蘑菇宝宝', rarity: 'N', image: 'https://placehold.co/200x200/FF6347/FFFFFF?text=蘑菇宝宝', weight: 50 },
-          { name: '露珠仙子', rarity: 'N', image: 'https://placehold.co/200x200/87CEEB/000000?text=露珠仙子', weight: 30 },
-          { name: '树懒长老', rarity: 'R', image: 'https://placehold.co/200x200/A0522D/FFFFFF?text=树懒长老', weight: 19 },
-          { name: '森林之王（隐藏款）', rarity: 'SSR', image: 'https://placehold.co/200x200/FFD700/000000?text=森林之王', weight: 1 }
+          { name: '蘑菇信使', rarity: 'N', image: 'http://localhost:5173/images/80BB41530E790D5FD3296F49B5062394.jpg', weight: 50 },
+          { name: '花仙子', rarity: 'N', image: 'http://localhost:5173/images/310B815B0928CECD12A3D923746DFDDD.jpg', weight: 30 },
+          { name: '森林猎人', rarity: 'R', image: 'http://localhost:5173/images/F19140E9C742CD1E367B82E2D6F8333B.jpg', weight: 19 },
+          { name: '树林守护者（隐藏款）', rarity: 'SSR', image: 'http://localhost:5173/images/27C6547ABC4877BB213CF38CFC13DEEA.jpg', weight: 1 }
         ])
       },
       {
         name: '王者装备小手办', // 您的系列名称
         description: '游戏中常戴的痛苦面具手办长什么样', // 您的系列描述
         price: 79.00, // 定价
-        imageUrl: 'https://placehold.co/400x400/3498DB/FFFFFF?text=奇幻生物', // 系列主图的URL
+        imageUrl: 'http://localhost:5173/images/屏幕截图 2025-07-30 191615.png', // 系列主图的URL
         items: JSON.stringify([
           // 这个系列包含的所有款式
-          { name: '森之精灵', rarity: 'N', image: 'https://placehold.co/200x200/2ECC71/FFFFFF?text=精灵', weight: 45 },
-          { name: '地底矮人', rarity: 'N', image: 'https://placehold.co/200x200/95A5A6/FFFFFF?text=矮人', weight: 45 },
-          { name: '烈焰幼龙', rarity: 'R', image: 'https://placehold.co/200x200/E74C3C/FFFFFF?text=幼龙', weight: 9 },
-          { name: '圣光麒麟（隐藏款）', rarity: 'SSR', image: 'https://placehold.co/200x200/F1C40F/000000?text=麒麟', weight: 1 }
+          { name: '暗影战斧', rarity: 'R', image: 'http://localhost:5173/images/屏幕截图 2025-07-29 210514.png', weight: 45 },
+          { name: '制裁之刃', rarity: 'R', image: 'http://localhost:5173/images/屏幕截图 2025-07-29 210515.png', weight: 45 },
+          { name: '无尽战刃', rarity: 'R', image: 'http://localhost:5173/images/屏幕截图 2025-07-29 210516.png', weight: 9 },
+          { name: '痛苦面具', rarity: 'SSR', image: 'http://localhost:5173/images/屏幕截图 2025-07-29 210517.png', weight: 1 },
+          { name: '虚无法杖', rarity: 'R', image: 'http://localhost:5173/images/屏幕截图 2025-07-29 210518.png', weight: 45 },
+          { name: '极影', rarity: 'N', image: 'http://localhost:5173/images/屏幕截图 2025-07-29 210519.png', weight: 9 },
+          { name: '近卫荣耀', rarity: 'N', image: 'http://localhost:5173/images/屏幕截图 2025-07-29 210520.png', weight: 1 }
         ])
       },{
         name: '三角洲红色物品系列', // 您的系列名称
-        description: '哈吉米得吃', // 您的系列描述
+        description: '哈吉米得吃,嘻嘻', // 您的系列描述
         price: 79.00, // 定价
-        imageUrl: 'https://placehold.co/400x400/3498DB/FFFFFF?text=奇幻生物', // 系列主图的URL
+        imageUrl: 'http://localhost:5173/images/屏幕截图 2025-07-30 191325.png', // 系列主图的URL
+        drawSoundUrl: '/sounds/哈基米音乐-滑雪大冒险_爱给网_aigei_com.mp3',
         items: JSON.stringify([
           // 这个系列包含的所有款式
-          { name: '森之精灵', rarity: 'N', image: 'https://placehold.co/200x200/2ECC71/FFFFFF?text=精灵', weight: 45 },
-          { name: '地底矮人', rarity: 'N', image: 'https://placehold.co/200x200/95A5A6/FFFFFF?text=矮人', weight: 45 },
-          { name: '烈焰幼龙', rarity: 'R', image: 'https://placehold.co/200x200/E74C3C/FFFFFF?text=幼龙', weight: 9 },
-          { name: '圣光麒麟（隐藏款）', rarity: 'SSR', image: 'https://placehold.co/200x200/F1C40F/000000?text=麒麟', weight: 1 }
+          { name: '刀片服务器', rarity: 'SSR', image: 'http://localhost:5173/images/屏幕截图 2025-07-29 205800.png', weight: 45 },
+          { name: '超算单元', rarity: 'SSR', image: 'http://localhost:5173/images/屏幕截图 2025-07-29 205801.png', weight: 45 },
+          { name: '呼吸机', rarity: 'R', image: 'http://localhost:5173/images/屏幕截图 2025-07-29 205802.png', weight: 9 },
+          { name: '化石', rarity: 'N', image: 'http://localhost:5173/images/屏幕截图 2025-07-29 205803.png', weight: 1 },
+          { name: '名贵机械表', rarity: 'N', image: 'http://localhost:5173/images/屏幕截图 2025-07-29 205804.png', weight: 1 },
+          { name: '军用炮弹', rarity: 'R', image: 'http://localhost:5173/images/屏幕截图 2025-07-29 205805.png', weight: 1 },
+          { name: '黄金瞪羚', rarity: 'R', image: 'http://localhost:5173/images/屏幕截图 2025-07-29 205806.png', weight: 1 },
+          { name: '显卡', rarity: 'N', image: 'http://localhost:5173/images/屏幕截图 2025-07-29 205807.png', weight: 1 },
+          { name: '金条', rarity: 'N', image: 'http://localhost:5173/images/屏幕截图 2025-07-29 205808.png', weight: 1 },
+          { name: '香槟', rarity: 'N', image: 'http://localhost:5173/images/屏幕截图 2025-07-29 205809.png', weight: 1 },
+          { name: '实验数据', rarity: 'N', image: 'http://localhost:5173/images/屏幕截图 2025-07-29 205810.png', weight: 1 }
         ])
       }
     ]);
