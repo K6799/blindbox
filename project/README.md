@@ -1,6 +1,2 @@
-# 盲盒抽奖商城系统
-
-## 技术选型
-
-- 前端：Vite + React + TailwindCSS
-- 后端：Node.js
+github仓库链接：https://github.com/K6799/blindbox.git
+使用Windows系统
